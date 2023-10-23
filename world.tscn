@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://b50w38vkd538"]
+
+[ext_resource type="Script" path="res://world.gd" id="1_3pcln"]
+[ext_resource type="PackedScene" uid="uid://1nsras6n8jiq" path="res://player.tscn" id="2_gv5qa"]
+
+[sub_resource type="Environment" id="Environment_71ota"]
+background_mode = 1
+background_color = Color(0.462745, 0, 0.486275, 1)
+ambient_light_color = Color(0.72549, 0.72549, 0.72549, 1)
+
+[node name="world" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.328015, -0.371784, 0.112024)
+script = ExtResource("1_3pcln")
+
+[node name="Player" parent="." instance=ExtResource("2_gv5qa")]
+transform = Transform3D(-0.783075, 0, -0.621927, 0, 1, 0, 0.621927, 0, -0.783075, -0.00453138, 1.66063, 0.00594044)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_71ota")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.00141366, 0.587837, -0.808978, 0.0337568, 0.808546, 0.587464, 0.999429, -0.0264781, -0.0209865, -8.58006, 7.32056, 0)
+shadow_enabled = true
