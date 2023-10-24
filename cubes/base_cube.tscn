@@ -4,17 +4,22 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h4d3w"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_beg5t"]
-albedo_color = Color(0.431373, 0.168627, 0.0470588, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w8yye"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_wtidx"]
-material = SubResource("StandardMaterial3D_beg5t")
+[sub_resource type="BoxMesh" id="BoxMesh_uj78w"]
+material = SubResource("StandardMaterial3D_w8yye")
 
 [node name="BaseCube" type="StaticBody3D"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 script = ExtResource("1_hxe2s")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_h4d3w")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_wtidx")
+mesh = SubResource("BoxMesh_uj78w")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, -1.31134e-07, 1.5, 0, -3, -6.55671e-08, 2.08165e-12, 0.51, 2.08165e-12)
+alpha_cut = 1
+text = "0"

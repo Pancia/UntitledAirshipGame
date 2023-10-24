@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bse8apnbhyckm"]
+
+[ext_resource type="PackedScene" uid="uid://cjummq7bn6emn" path="res://cubes/base_cube.tscn" id="1_0h848"]
+[ext_resource type="Script" path="res://cubes/jump_cube.gd" id="2_c4jga"]
+
+[node name="JumpCube" type="Node3D"]
+
+[node name="BaseCube" parent="." instance=ExtResource("1_0h848")]
+script = ExtResource("2_c4jga")
