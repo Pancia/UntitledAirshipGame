@@ -7,6 +7,7 @@
 background_mode = 1
 background_color = Color(0.462745, 0, 0.486275, 1)
 ambient_light_color = Color(0.72549, 0.72549, 0.72549, 1)
+sdfgi_enabled = true
 
 [node name="world" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.328015, -0.371784, 0.112024)
