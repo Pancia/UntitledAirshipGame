@@ -1,6 +1,6 @@
 extends Node3D
 
-var base_cube_res = preload("res://cubes/base_cube.tscn")
+var starter_cube_res = preload("res://cubes/starter_cube.tscn")
 var heart_cube_res = preload("res://cubes/heart_cube.tscn")
 var jump_cube_res = preload("res://cubes/jump_cube.tscn")
 
@@ -14,7 +14,7 @@ func _ready():
 			elif (x == 3 and z == 3):
 				newCube = jump_cube_res.instantiate()
 			else:
-				newCube = base_cube_res.instantiate()
+				newCube = starter_cube_res.instantiate()
 			newCube.position = Vector3(x, 0, z)
 			add_child(newCube)
 

@@ -1,13 +1,7 @@
-extends BaseCube
+extends Node3D
 
-func _init():
-	kind = "JUMP"
+@onready var label = $Label3D
+var kind = "JUMP"
 
 func _ready():
 	label.text = "J"
-
-func highlight():
-	pass
-
-func unhighlight():
-	pass

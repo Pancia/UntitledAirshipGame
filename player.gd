@@ -25,8 +25,9 @@ func _physics_process(delta):
 		velocity.y -= gravity * delta
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-		print(current_cube.kind)
-		if current_cube.kind == "JUMP":
+		print(current_cube)
+		print(current_cube.get_parent())
+		if current_cube.kind == "JUMP": 
 			velocity.y = JUMP_VELOCITY * 3
 	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
@@ -40,7 +41,7 @@ func _physics_process(delta):
 	for index in get_slide_collision_count():
 		var collision = get_slide_collision(index)
 		var body = collision.get_collider()
-		if current_cube:
-			current_cube.call("unhighlight")
+		#if current_cube:
+		#	current_cube.call("unhighlight")
 		current_cube = body
-		body.call("highlight")
+		#body.call("highlight")
