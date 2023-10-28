@@ -10,7 +10,6 @@
 material = SubResource("StandardMaterial3D_w8yye")
 
 [node name="BaseCube" type="StaticBody3D"]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 script = ExtResource("1_hxe2s")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

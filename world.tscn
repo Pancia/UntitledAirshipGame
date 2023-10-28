@@ -13,7 +13,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.328015, -0.371784, 0.112024
 script = ExtResource("1_3pcln")
 
 [node name="Player" parent="." instance=ExtResource("2_gv5qa")]
-transform = Transform3D(-0.783075, 0, -0.621927, 0, 1, 0, 0.621927, 0, -0.783075, -0.00453138, 1.66063, 0.00594044)
+transform = Transform3D(-0.391538, 0, -0.310964, 0, 0.5, 0, 0.310964, 0, -0.391538, -0.00453138, 1.66063, 0.00594044)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_71ota")

@@ -11,6 +11,6 @@ func _ready():
 
 func highlight():
 	pass
-	
+
 func unhighlight():
 	pass

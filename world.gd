@@ -15,7 +15,7 @@ func _ready():
 				newCube = jump_cube_res.instantiate()
 			else:
 				newCube = base_cube_res.instantiate()
-			newCube.position = Vector3(2 * x, 0, 2 * z)
+			newCube.position = Vector3(x, 0, z)
 			add_child(newCube)
 
 func _process(delta):
