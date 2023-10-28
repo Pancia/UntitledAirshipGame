@@ -4,7 +4,13 @@ var starter_cube_res = preload("res://cubes/starter_cube.tscn")
 var heart_cube_res = preload("res://cubes/heart_cube.tscn")
 var jump_cube_res = preload("res://cubes/jump_cube.tscn")
 
+var paused = false
+
+signal pause
+signal unpause
+
 func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	for x in range(0, 10):
 		for z in range(0, 10):
 			var newCube
@@ -18,5 +24,20 @@ func _ready():
 			newCube.position = Vector3(x, 0, z)
 			add_child(newCube)
 
-func _process(delta):
-	pass
+func pause_game():
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	#get_tree().paused = true #In case you want to pause the game
+	pause.emit()
+
+func unpause_game():
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	#get_tree().paused = false
+	unpause.emit()
+
+func _process(_delta):
+	if Input.is_action_just_released("game_pause"):
+		paused = !paused
+		if paused:
+			pause_game()
+		else:
+			unpause_game()
