@@ -9,7 +9,7 @@ extends CharacterBody3D
 var speed = base_speed
 var sprinting = false
 var camera_fov_extents = [75.0, 85.0] #index 0 is normal, index 1 is sprinting
-
+var current_cube = null
 
 @onready var parts = {
 	"head": $head,
@@ -24,7 +24,6 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 func _ready():
 	world.pause.connect(_on_pause)
 	world.unpause.connect(_on_unpause)
-	
 	parts.camera.current = true
 
 func _process(delta):
@@ -40,24 +39,20 @@ func _process(delta):
 func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y -= gravity * delta
-
-	if Input.is_action_pressed("jump") and is_on_floor():
-		velocity.y += jump_velocity
-
+	if Input.is_action_just_pressed("jump") and is_on_floor():
+		velocity.y = jump_velocity
+		if current_cube.kind == "JUMP": 
+			velocity.y = jump_velocity * 3
 	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
 	var direction = input_dir.normalized().rotated(-parts.head.rotation.y)
 	direction = Vector3(direction.x, 0, direction.y)
-	if is_on_floor(): #don't lerp y movement
-		velocity.x = lerp(velocity.x, direction.x * speed, accel * delta)
-		velocity.z = lerp(velocity.z, direction.z * speed, accel * delta)
-	
-	#bob head
-	#if input_dir and is_on_floor():
-		#parts.camera_animation.play("head_bob", 0.5)
-	#else:
-		#parts.camera_animation.play("reset", 0.5)
-
+	velocity.x = lerp(velocity.x, direction.x * speed, accel * delta)
+	velocity.z = lerp(velocity.z, direction.z * speed, accel * delta)
 	move_and_slide()
+	for index in get_slide_collision_count():
+		var collision = get_slide_collision(index)
+		var body = collision.get_collider()
+		current_cube = body
 
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -71,3 +66,4 @@ func _on_pause():
 
 func _on_unpause():
 	pass
+
