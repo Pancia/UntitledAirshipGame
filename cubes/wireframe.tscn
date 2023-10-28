@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://bxmqk5ehxt0om"]
+
+[ext_resource type="Script" path="res://cubes/wireframe.gd" id="1_rq003"]
+[ext_resource type="Shader" path="res://cubes/wireframe.gdshader" id="2_m2x2q"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_70atd"]
+render_priority = 0
+shader = ExtResource("2_m2x2q")
+shader_parameter/albedo = Color(0, 0, 0, 0)
+shader_parameter/wire_color = Color(0, 0, 0, 1)
+shader_parameter/wire_width = 5.0
+shader_parameter/wire_smoothness = 0.01
+
+[sub_resource type="BoxMesh" id="BoxMesh_7e6fe"]
+material = SubResource("ShaderMaterial_70atd")
+
+[node name="wireframe" type="Node3D"]
+script = ExtResource("1_rq003")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_7e6fe")
