@@ -15,3 +15,5 @@ func _process(delta):
 		remove_child(wireframe_mesh)
 		add_child(real)
 		realized = true
+	elif not realized:
+		wireframe_mesh.get_active_material(0).set_shader_parameter("appear_progress", time_alive / time_to_grow)

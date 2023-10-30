@@ -10,6 +10,7 @@ shader_parameter/albedo = Color(0, 0, 0, 0)
 shader_parameter/wire_color = Color(0, 0, 0, 1)
 shader_parameter/wire_width = 5.0
 shader_parameter/wire_smoothness = 0.01
+shader_parameter/appear_progress = 0.818
 
 [sub_resource type="BoxMesh" id="BoxMesh_7e6fe"]
 material = SubResource("ShaderMaterial_70atd")
@@ -18,4 +19,5 @@ material = SubResource("ShaderMaterial_70atd")
 script = ExtResource("1_rq003")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0130305, 0.0171021, -0.00352716)
 mesh = SubResource("BoxMesh_7e6fe")
