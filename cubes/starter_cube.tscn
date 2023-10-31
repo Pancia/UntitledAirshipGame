@@ -7,3 +7,5 @@
 
 [node name="BaseCube" parent="." instance=ExtResource("2_nlyvi")]
 script = ExtResource("1_quake")
+
+[editable path="BaseCube"]

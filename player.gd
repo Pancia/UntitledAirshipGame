@@ -3,7 +3,7 @@ extends CharacterBody3D
 
 @export var base_speed = 5
 @export var sprint_speed = 8
-@export var jump_velocity = 4
+@export var jump_velocity = 5.0
 @export var sensitivity = 0.1
 @export var accel = 10
 var speed = base_speed
@@ -19,7 +19,6 @@ var current_cube = null
 @onready var world = get_parent()
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-
 
 func _ready():
 	world.pause.connect(_on_pause)
@@ -54,12 +53,35 @@ func _physics_process(delta):
 		var body = collision.get_collider()
 		current_cube = body
 
+var prev_looking_at
+
 func _input(event):
 	if event is InputEventMouseMotion:
 		if !world.paused:
 			parts.head.rotation_degrees.y -= event.relative.x * sensitivity
 			parts.head.rotation_degrees.x -= event.relative.y * sensitivity
 			parts.head.rotation.x = clamp(parts.head.rotation.x, deg_to_rad(-90), deg_to_rad(90))
+			const RAY_LENGTH = 1.5
+			var space_state = get_world_3d().direct_space_state
+			var cam = $head/camera
+			var mousepos = get_viewport().get_mouse_position()
+			var origin = cam.project_ray_origin(mousepos)
+			var end = origin + cam.project_ray_normal(mousepos) * RAY_LENGTH
+			var query = PhysicsRayQueryParameters3D.create(origin, end)
+			query.collide_with_areas = true
+			var result = space_state.intersect_ray(query)
+			if 'collider' in result:
+				var looking_at: StaticBody3D = result["collider"]
+				if looking_at != prev_looking_at and prev_looking_at != null and prev_looking_at.has_method("unhighlight"):
+						prev_looking_at.call("unhighlight")
+				if looking_at.has_method("highlight"):
+					looking_at.call("highlight")
+					prev_looking_at = looking_at
+	if event.is_action_released("break"):
+		#TODO should invoke the blocks' destroy method
+		#so it can cleanup and do anything special (like red block)
+		prev_looking_at.queue_free()
+		prev_looking_at = null
 
 func _on_pause():
 	pass

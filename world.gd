@@ -14,14 +14,13 @@ func _ready():
 	for x in range(0, 10):
 		for z in range(0, 10):
 			var newCube
-			if (x == 5 and z == 5):
-				print("instantiate heart cube")
+			if (x == 4 and z == 2):
 				newCube = heart_cube_res.instantiate()
-			elif (x == 3 and z == 3):
+			elif (x == 5 and z == 3):
 				newCube = jump_cube_res.instantiate()
 			else:
 				newCube = starter_cube_res.instantiate()
-			newCube.position = Vector3(x, 0, z)
+			newCube.position = Vector3(x-5, 0, -z)
 			add_child(newCube)
 
 func pause_game():
