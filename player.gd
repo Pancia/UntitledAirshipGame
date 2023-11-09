@@ -34,6 +34,11 @@ func _process(delta):
 		sprinting = false
 		speed = base_speed
 		parts.camera.fov = lerp(parts.camera.fov, camera_fov_extents[0], 10*delta)
+	if prev_looking_at and Input.is_action_just_released("activate"):
+		print(prev_looking_at)
+		var seedable = prev_looking_at.get_node("../Seedable")
+		print(seedable)
+		seedable.plant(Seed.randSeedKind())
 
 func _physics_process(delta):
 	if not is_on_floor():
@@ -76,8 +81,12 @@ func _input(event):
 						prev_looking_at.call("unhighlight")
 				if looking_at.has_method("highlight"):
 					looking_at.call("highlight")
-					prev_looking_at = looking_at
-	if event.is_action_released("break"):
+				prev_looking_at = looking_at
+			else:
+				if prev_looking_at != null and prev_looking_at.has_method("unhighlight"):
+						prev_looking_at.call("unhighlight")
+				prev_looking_at = null
+	if prev_looking_at and event.is_action_released("break"):
 		#TODO should invoke the blocks' destroy method
 		#so it can cleanup and do anything special (like red block)
 		prev_looking_at.queue_free()

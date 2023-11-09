@@ -1,11 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://bdvcvkd7unm6r"]
+[gd_scene load_steps=6 format=3 uid="uid://bdvcvkd7unm6r"]
 
 [ext_resource type="Script" path="res://cubes/starter_cube.gd" id="1_quake"]
 [ext_resource type="PackedScene" uid="uid://cjummq7bn6emn" path="res://cubes/base_cube.tscn" id="2_nlyvi"]
+[ext_resource type="PackedScene" uid="uid://cpdmupneaq75a" path="res://seedable.tscn" id="3_stlr4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r8nen"]
+albedo_color = Color(0.247059, 0.0862745, 0.00392157, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_g6kky"]
+material = SubResource("StandardMaterial3D_r8nen")
 
 [node name="Node3D" type="Node3D"]
 
 [node name="BaseCube" parent="." instance=ExtResource("2_nlyvi")]
 script = ExtResource("1_quake")
+
+[node name="MeshInstance3D" parent="BaseCube" index="1"]
+mesh = SubResource("BoxMesh_g6kky")
+
+[node name="Seedable" parent="." instance=ExtResource("3_stlr4")]
 
 [editable path="BaseCube"]

@@ -14,5 +14,6 @@ func _process(delta):
 		growth.position = position + Vector3(0, 1, 0)
 		growth.resource = heart_cube_res
 		growth.time_to_grow = time_to_grow
+		growth.seed_kind = Seed.SeedKind.HEART
 		add_child(growth)
 		spawned_child = true

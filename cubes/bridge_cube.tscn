@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://bup5ms35p8dtq"]
+
+[ext_resource type="PackedScene" uid="uid://cjummq7bn6emn" path="res://cubes/base_cube.tscn" id="1_skkef"]
+[ext_resource type="Script" path="res://cubes/bridge_cube.gd" id="2_7ibi3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wvn1w"]
+albedo_color = Color(1, 0.568627, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_x5dgw"]
+material = SubResource("StandardMaterial3D_wvn1w")
+
+[node name="JumpCube" type="Node3D"]
+
+[node name="BaseCube" parent="." instance=ExtResource("1_skkef")]
+script = ExtResource("2_7ibi3")
+
+[node name="MeshInstance3D" parent="BaseCube" index="1"]
+mesh = SubResource("BoxMesh_x5dgw")
+
+[editable path="BaseCube"]
